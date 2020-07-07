@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.plaf.nimbus.AbstractRegionPainter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -117,13 +118,13 @@ public class BrowserUtilities {
      * to target window based on page title
      * @param title of the window to switch
      */
-    public static void scitchWindow(String title){
+    public static void switchWindow(String title){
         Set<String> windowHandles = Driver.getDriver().getWindowHandles();
-        for(String window : windowHandles){
-            Driver.getDriver().switchTo().window(window);
-            if(Driver.getDriver().getTitle().equals(title)){
-                break;
+        windowHandles.forEach((w)  -> {
+            Driver.getDriver().switchTo().window(w);
+            if (Driver.getDriver().getTitle().equals(title)){
             }
-        }
+        });
+
     }
 }
